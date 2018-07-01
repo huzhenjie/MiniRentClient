@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="userinfo">
+    <block>
+      <image class="userinfo-avatar" src="{{avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{nickName}}，我们已经在此恭候多时了</text>
+    </block>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <button bindtap="scan" class="weui-btn" type="primary">扫码入住</button>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+<!--pages/auth/auth.wxml.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">温馨提示</view>
+    <view class="page__desc">我们需要您的授权信息，才能正常使用本程序</view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <button bindgetuserinfo="auth" open-type="getUserInfo" class="weui-btn" type="primary">立即授权</button>
+  </view>
+</view>

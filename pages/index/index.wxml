@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<view class="page">
+  <view class="page__bd">
+  
+    <view wx:if="{{roomList.length > 0}}" class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">我的房间</view>
+      <view class="weui-panel__bd">
+        <view wx:for="{{roomList}}" wx:key="item" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-cell">
+            <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+              <image bindtap="goToRoomDetail" data-roomid='{{item.roomId}}' src="http://placeholder.qiniudn.com/160x160" style="width: 50px; height: 50px; display: block" />
+              <view class="weui-badge weui-badge_dot" style="position: absolute;top: -.4em;right: -.4em;"></view>
+            </view>
+            <view class="weui-cell__bd">
+              <view>{{item.roomNo}} - {{item.buildingName}}</view>
+              <view style="font-size: 13px;color: #888888;">这里是时间{{item.decoration}}</view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+      <view class="weui-panel__ft">
+        <view class="weui-cell weui-cell_access weui-cell_link">
+          <view class="weui-cell__bd">租房历史</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing">
+      <button class="weui-btn" type="primary" bindtap="scan">扫码入住</button>
+      <button wx-if="{{roomList.length == 0}}" class="weui-btn" type="default">租房历史</button>
+    </view>
+  </view>
+</view>
