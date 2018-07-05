@@ -73,5 +73,27 @@ module.exports = {
         success && success(res)
       }
     })
+  },
+  unpay: function (userId, tokenId, roomId, success) {
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/renter/unpay/${roomId}`,
+      header: { userId, tokenId },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
+  },
+  extraHistory: function (userId, tokenId, barginExtraId, success) {
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/renter/extraHistory/${barginExtraId}`,
+      header: { userId, tokenId },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
   }
 };
