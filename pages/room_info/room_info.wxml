@@ -49,7 +49,7 @@
           <view class="weui-label">租金</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" disabled="true" value="{{info.bargin.rentFee}} 元" />
+          <input class="weui-input" disabled="true" value="{{info.bargin.rentFee/100}} 元" />
         </view>
       </view>
 
@@ -58,7 +58,34 @@
           <view class="weui-label">押金</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" disabled="true" value="{{info.bargin.guarantyFee}} 元" />
+          <input class="weui-input" disabled="true" value="{{info.bargin.guarantyFee/100}} 元" />
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">收租日</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" disabled="true" value="每月 {{info.bargin.rentDay}} 日" />
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">入住日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" disabled="true" value="{{info.bargin.liveDate}}" />
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">退租日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" disabled="true" value="{{info.bargin.leaveDate}}" />
         </view>
       </view>
 
@@ -67,10 +94,34 @@
           <view class="weui-label">地址</view>
         </view>
         <view class="weui-cell__bd">
-          <textarea class="weui-textarea" disabled="true" value="{{info.building.address}} - {{info.building.name}}" style="height: 3.3em"/>
+          <textarea class="weui-textarea" disabled="true" value="{{info.building.address}} - {{info.building.name}}" style="height: 3.3em" />
         </view>
       </view>
 
+    </view>
+
+    <view class="weui-cells__title">收费项目</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view wx:for="{{info.extras}}" wx:key="item" class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">{{item.value}}</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" disabled="true" value="{{item.price/100}} 元/{{item.unit}}" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">配套设施</view>
+    <view class="weui-cells weui-cells_after-title">
+      <checkbox-group bindchange="checkboxChange">
+        <label class="weui-cell weui-check__label" wx:for="{{info.facilities}}" wx:key="item">
+          <view class="weui-cell__hd weui-check__hd_in-checkbox">
+            <icon class="weui-icon-checkbox_success" type="success" size="23"></icon>
+          </view>
+          <view class="weui-cell__bd">{{item.value}}</view>
+        </label>
+      </checkbox-group>
     </view>
 
     <view wx:if="{{info.bargin.remark != ''}}" class="weui-cells__title">备注</view>
@@ -81,6 +132,10 @@
         </view>
       </view>
     </view>
-    
+
+    <view wx:if="{{info.landlord && info.landlord.length > 0}}" class="page__bd page__bd_spacing" style="margin-top: 2em">
+      <button class="weui-btn" type="primary" bindtap="connectLandlord">联系房东</button>
+    </view>
+
   </view>
 </view>
