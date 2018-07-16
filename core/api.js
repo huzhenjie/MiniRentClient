@@ -95,5 +95,23 @@ module.exports = {
         success && success(res)
       }
     })
+  },
+  getFeeList: function (roomId, userId, tokenId, page, rows, success) {
+    if (!page) {
+      page = 1
+    }
+    if (!rows) {
+      rows = 10
+    }
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/renter/rent/${roomId}`,
+      data: { page, rows },
+      header: { userId, tokenId },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
   }
 };

@@ -1,0 +1,38 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-form-preview" wx:for="{{feeList}}" wx:key="item">
+      <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">{{item.rentMonth}}</view>
+          <view class="weui-form-preview__value_in-hd">¥{{item.realFee / 100}}</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">应缴</view>
+          <view class="weui-form-preview__value">{{item.fee / 100}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">实缴</view>
+          <view class="weui-form-preview__value">{{item.realFee / 100}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">支付状态</view>
+          <view class="weui-form-preview__value" wx:if="{{item.payTs > 0}}">已支付</view>
+          <view class="weui-form-preview__value" wx:else>未支付</view>
+        </view>
+        <view class="weui-form-preview__item" wx:if="{{item.payTs > 0}}">
+          <view class="weui-form-preview__label">支付时间</view>
+          <view class="weui-form-preview__value">{{item.payDate}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">账单号</view>
+          <view class="weui-form-preview__value">{{item.rentNo}}</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">立即缴费</navigator>
+      </view>
+    </view>
+  </view>
+</view>

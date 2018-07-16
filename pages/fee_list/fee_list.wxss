@@ -1,0 +1,5 @@
+/* pages/fee_list/fee_list.wxss */
+
+.weui-form-preview {
+  margin-top: 25px;
+}

@@ -53,5 +53,12 @@ Page({
     wx.navigateTo({
       url: `/pages/room_info/room_info?room_id=${roomId}`
     })
+  },
+  gotoFeeList: function (event) {
+    const roomId = event.currentTarget.dataset.roomid;
+    console.log(roomId);
+    wx.navigateTo({
+      url: `/pages/fee_list/fee_list?room_id=${roomId}`,
+    })
   }
 });

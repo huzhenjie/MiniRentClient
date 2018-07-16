@@ -1,12 +1,12 @@
 <!--index.wxml-->
 <view class="page">
   <view class="page__bd">
-  
+
     <view wx:if="{{roomList.length > 0}}" class="weui-panel weui-panel_access">
       <view class="weui-panel__hd">我的房间</view>
       <view class="weui-panel__bd">
         <view wx:for="{{roomList}}" wx:key="item" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <view class="weui-cell">
+          <view class="weui-cell" bindtap="gotoFeeList" data-roomid="{{item.roomId}}">
             <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
               <image bindtap="goToRoomDetail" data-roomid='{{item.roomId}}' src="/images/homepage_fill.png" style="width: 50px; height: 50px; display: block" />
               <view class="weui-badge weui-badge_dot" style="position: absolute;top: -.4em;right: -.4em;"></view>

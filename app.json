@@ -7,7 +7,8 @@
     "pages/guide/guide",
     "pages/qr/qr",
     "pages/room_info/room_info",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/fee_list/fee_list"
   ],
   "window": {
     "backgroundTextStyle": "light",
