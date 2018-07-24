@@ -113,5 +113,16 @@ module.exports = {
         success && success(res)
       }
     })
+  },
+  rentDetail: function (userId, tokenId, rentId, success) {
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/renter/rentDetail/${rentId}`,
+      header: { userId, tokenId },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
   }
 };

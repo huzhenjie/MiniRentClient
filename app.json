@@ -8,7 +8,8 @@
     "pages/qr/qr",
     "pages/room_info/room_info",
     "pages/profile/profile",
-    "pages/fee_list/fee_list"
+    "pages/fee_list/fee_list",
+    "pages/rent_detail/rent_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
