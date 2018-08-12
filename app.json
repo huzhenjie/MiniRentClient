@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/guest/home/home",
     "pages/logs/logs",
     "pages/auth/auth",
     "pages/guide/guide",
