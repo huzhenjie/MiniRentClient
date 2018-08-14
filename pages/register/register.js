@@ -1,4 +1,6 @@
-// pages/register/register.js
+const app = getApp();
+const api = require('../../core/api.js');
+
 Page({
 
   /**
@@ -10,6 +12,11 @@ Page({
     idcard: "",
     smsCode: "",
     smsBtn: '获取验证码',
+    nameError: false,
+    idcardError: false,
+    telError: false,
+    smsCodeError: false,
+    errorMsg: "",
     smsWaitSecond: 0
   },
 
@@ -113,9 +120,81 @@ Page({
   },
 
   sendSms: function() {
+    if (!this.data.tel || this.data.tel.length < 11) {
+      this.setData({
+        telError: true,
+      });
+      return
+    }
     if (this.data.smsWaitSecond > 0) {
       return;
     }
+    api.sendSmsCode(this.data.tel, res => {
+
+    });
     this.showSendingSms(this, 60)
+  },
+
+  register: function() {
+    this.setData({
+      nameError: false,
+      idcardError: false,
+      telError: false,
+      smsCodeError: false,
+      errorMsg: ""
+    })
+    if (!this.data.name || this.data.name == '') {
+      this.setData({
+        nameError: true,
+      });
+      return
+    }
+    if (!this.data.idcard || this.data.idcard == '') {
+      this.setData({
+        idcardError: true,
+      });
+      return
+    }
+    if (!this.data.tel || this.data.tel.length < 11) {
+      this.setData({
+        telError: true,
+      });
+      return
+    }
+    if (!this.data.smsCode || this.data.smsCode == '') {
+      this.setData({
+        smsCodeError: true,
+      });
+      return
+    }
+    const openid = app.globalData.user.openid;
+    const that = this;
+    api.snsRegist(openid, this.data.name, this.data.tel, this.data.idcard, this.data.smsCode, res => {
+      if (res.data.code != 1) {
+        that.setData({
+          errorMsg: res.data.msg
+        });
+        return
+      }
+
+      const { wxSns, tokenId } = res.data.data;
+      const { openid, unionid, userId } = wxSns;
+      app.globalData.user = {
+        openid,
+        unionid,
+        userId,
+        tokenId
+      };
+
+      if (userId && userId > 0) {
+        wx.redirectTo({
+          url: '/pages/guide/guide'
+        });
+      } else {
+        that.setData({
+          errorMsg: '未知异常'
+        });
+      }
+    })
   }
 })

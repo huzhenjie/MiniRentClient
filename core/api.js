@@ -19,7 +19,11 @@ module.exports = {
             wx.getUserInfo({
               success: res => {
                 console.log(res);
-                const { userInfo, rawData, signature } = res;
+                const {
+                  userInfo,
+                  rawData,
+                  signature
+                } = res;
                 success && success(userInfo, rawData, signature, code)
               }
             })
@@ -33,7 +37,11 @@ module.exports = {
       method: 'POST',
       url: `${host}/api/renter/snsLogin`,
       data: {
-        body: { code, signature, rawData }
+        body: {
+          code,
+          signature,
+          rawData
+        }
       },
       success: res => {
         console.log(res);
@@ -45,7 +53,11 @@ module.exports = {
     wx.request({
       method: 'POST',
       url: `${host}/api/renter/bindUser`,
-      data: { openid, roomId, tokenId },
+      data: {
+        openid,
+        roomId,
+        tokenId
+      },
       success: res => {
         console.log(res);
         success && success(res)
@@ -56,7 +68,10 @@ module.exports = {
     wx.request({
       method: 'GET',
       url: `${host}/api/renter/roomList`,
-      header: { userId, tokenId },
+      header: {
+        userId,
+        tokenId
+      },
       success: res => {
         console.log(res);
         success && success(res)
@@ -67,7 +82,10 @@ module.exports = {
     wx.request({
       method: 'GET',
       url: `${host}/api/renter/bargin/${roomId}`,
-      header: { userId, tokenId },
+      header: {
+        userId,
+        tokenId
+      },
       success: res => {
         console.log(res);
         success && success(res)
@@ -78,7 +96,10 @@ module.exports = {
     wx.request({
       method: 'GET',
       url: `${host}/api/renter/unpay/${roomId}`,
-      header: { userId, tokenId },
+      header: {
+        userId,
+        tokenId
+      },
       success: res => {
         console.log(res);
         success && success(res)
@@ -89,7 +110,10 @@ module.exports = {
     wx.request({
       method: 'GET',
       url: `${host}/api/renter/extraHistory/${barginExtraId}`,
-      header: { userId, tokenId },
+      header: {
+        userId,
+        tokenId
+      },
       success: res => {
         console.log(res);
         success && success(res)
@@ -106,8 +130,14 @@ module.exports = {
     wx.request({
       method: 'GET',
       url: `${host}/api/renter/rent/${roomId}`,
-      data: { page, rows },
-      header: { userId, tokenId },
+      data: {
+        page,
+        rows
+      },
+      header: {
+        userId,
+        tokenId
+      },
       success: res => {
         console.log(res);
         success && success(res)
@@ -118,7 +148,29 @@ module.exports = {
     wx.request({
       method: 'GET',
       url: `${host}/api/renter/rentDetail/${rentId}`,
-      header: { userId, tokenId },
+      header: {
+        userId,
+        tokenId
+      },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
+  },
+  snsRegist: function (openid, name, phone, idCard, code, success) {
+    wx.request({
+      method: 'POST',
+      url: `${host}/api/renter/snsRegist`,
+      data: {
+        openid,
+        body: {
+          name,
+          phone,
+          idCard,
+          code
+        }
+      },
       success: res => {
         console.log(res);
         success && success(res)
