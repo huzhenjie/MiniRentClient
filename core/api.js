@@ -124,5 +124,15 @@ module.exports = {
         success && success(res)
       }
     })
+  },
+  sendSmsCode: function (phone, success) {
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/sms/send/${phone}`,
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
   }
 };
