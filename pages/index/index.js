@@ -60,5 +60,10 @@ Page({
     wx.navigateTo({
       url: `/pages/fee_list/fee_list?room_id=${roomId}`,
     })
+  },
+  goToHistory: function (event) {
+    wx.navigateTo({
+      url: `/pages/history/history`,
+    })
   }
 });

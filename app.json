@@ -9,7 +9,8 @@
     "pages/profile/profile",
     "pages/fee_list/fee_list",
     "pages/rent_detail/rent_detail",
-    "pages/register/register"
+    "pages/register/register",
+    "pages/history/history"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -186,5 +186,16 @@ module.exports = {
         success && success(res)
       }
     })
+  },
+  historyLive: function (userId, tokenId, success) {
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/renter/historyLive`,
+      header: { userId, tokenId },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
   }
 };
