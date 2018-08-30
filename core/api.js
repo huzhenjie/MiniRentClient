@@ -120,7 +120,7 @@ module.exports = {
       }
     })
   },
-  getFeeList: function (roomId, userId, tokenId, page, rows, success) {
+  getFeeList: function (barginId, userId, tokenId, page, rows, success) {
     if (!page) {
       page = 1
     }
@@ -128,8 +128,8 @@ module.exports = {
       rows = 10
     }
     wx.request({
-      method: 'GET',
-      url: `${host}/api/renter/rent/${roomId}`,
+      method: 'POST',
+      url: `${host}/api/renter/rent/${barginId}`,
       data: {
         page,
         rows

@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    roomId: 0,
+    barginId: 0,
     feeList: []
   },
 
@@ -18,16 +18,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const roomId = options.room_id;
+    const barginId = options.bargin_id;
     this.setData({
-      roomId
+      barginId
     });
     const {
       userId,
       tokenId
     } = app.globalData.user;
     const that = this;
-    api.getFeeList(roomId, userId, tokenId, 1, 30, res => {
+    api.getFeeList(barginId, userId, tokenId, 1, 30, res => {
       const feeList = res.data.data.list;
       feeList.map(item => {
         item.payDate = util.tsToDateStr(item.payTs, 'yyyy-MM-dd hh:mm:ss');

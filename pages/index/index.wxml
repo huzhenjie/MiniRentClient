@@ -5,7 +5,7 @@
     <view wx:if="{{roomList.length > 0}}" class="weui-panel weui-panel_access">
       <view class="weui-panel__hd">我的房间</view>
       <view class="weui-panel__bd">
-        <view wx:for="{{roomList}}" wx:key="item" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" bindtap="gotoFeeList" data-roomid="{{item.roomId}}">
+        <view wx:for="{{roomList}}" wx:key="item" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" bindtap="gotoFeeList" data-barginid="{{item.barginId}}">
           <view class="weui-cell">
             <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
               <image bindtap="goToRoomDetail" data-barginid='{{item.barginId}}' src="/images/homepage_fill.png" style="width: 50px; height: 50px; display: block" />

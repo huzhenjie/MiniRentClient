@@ -55,10 +55,10 @@ Page({
     })
   },
   gotoFeeList: function (event) {
-    const roomId = event.currentTarget.dataset.roomid;
-    console.log(roomId);
+    const barginId = event.currentTarget.dataset.barginid;
+    console.log(barginId);
     wx.navigateTo({
-      url: `/pages/fee_list/fee_list?room_id=${roomId}`,
+      url: `/pages/fee_list/fee_list?bargin_id=${barginId}`,
     })
   },
   goToHistory: function (event) {
