@@ -1,2 +1,29 @@
-<!--pages/history/history.wxml-->
-<text>pages/history/history.wxml</text>
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">租房历史</view>
+    <!-- <view class="page__desc"></view> -->
+  </view>
+  <view class="page__bd">
+    <view class="weui-form-preview" wx:for="{{historyList}}" wx:key="item">
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">房号</view>
+          <view class="weui-form-preview__value">{{item.roomNo}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">入住时间</view>
+          <view class="weui-form-preview__value">{{item.liveDate}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">退房时间</view>
+          <view class="weui-form-preview__value">{{item.leaveDate}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">地址</view>
+          <view class="weui-form-preview__value">{{item.buildingName}}</view>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+</view>

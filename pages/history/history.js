@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    historyList: []
   },
 
   /**
@@ -22,7 +22,14 @@ Page({
     } = app.globalData.user;
     const that = this;
     api.historyLive(userId, tokenId, res => {
-      
+      const historyList = res.data.data;
+      historyList.map(item => {
+        item.liveDate = util.tsToDateStr(item.liveTs, 'yyyy-MM-dd hh:mm:ss');
+        item.leaveDate = util.tsToDateStr(item.leaveTs, 'yyyy-MM-dd hh:mm:ss');
+      });
+      that.setData({
+        historyList
+      })
     })
   },
 
