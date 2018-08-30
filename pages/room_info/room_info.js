@@ -16,13 +16,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const roomId = options.room_id;
+    const barginId = options.bargin_id;
     const {
       userId,
       tokenId
     } = app.globalData.user;
     const that = this;
-    api.bargin(userId, tokenId, roomId, res => {
+    api.bargin(userId, tokenId, barginId, res => {
       const bargin = res.data.data.bargin;
       bargin.leaveDate = util.tsToDateStr(bargin.leaveTs, 'yyyy年M月d日');
       bargin.liveDate = util.tsToDateStr(bargin.liveTs, 'yyyy年M月d日');

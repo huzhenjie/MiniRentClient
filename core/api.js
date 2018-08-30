@@ -78,10 +78,10 @@ module.exports = {
       }
     })
   },
-  bargin: function (userId, tokenId, roomId, success) {
+  bargin: function (userId, tokenId, barginId, success) {
     wx.request({
       method: 'GET',
-      url: `${host}/api/renter/bargin/${roomId}`,
+      url: `${host}/api/renter/bargin/${barginId}`,
       header: {
         userId,
         tokenId

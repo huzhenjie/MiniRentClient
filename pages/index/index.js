@@ -48,10 +48,10 @@ Page({
     qr.scan()
   },
   goToRoomDetail: function (event) {
-    const roomId = event.currentTarget.dataset.roomid;
-    console.log(roomId);
+    const barginId = event.currentTarget.dataset.barginid;
+    console.log(barginId);
     wx.navigateTo({
-      url: `/pages/room_info/room_info?room_id=${roomId}`
+      url: `/pages/room_info/room_info?bargin_id=${barginId}`
     })
   },
   gotoFeeList: function (event) {
