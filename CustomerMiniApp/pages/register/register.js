@@ -106,7 +106,7 @@ Page({
       that.setData({
         smsBtn: '获取验证码',
         smsWaitSecond: count
-      })
+      });
       return
     }
     that.setData({
@@ -142,14 +142,14 @@ Page({
       telError: false,
       smsCodeError: false,
       errorMsg: ""
-    })
-    if (!this.data.name || this.data.name == '') {
+    });
+    if (!this.data.name || this.data.name === '') {
       this.setData({
         nameError: true,
       });
       return
     }
-    if (!this.data.idcard || this.data.idcard == '') {
+    if (!this.data.idcard || this.data.idcard === '') {
       this.setData({
         idcardError: true,
       });
@@ -161,7 +161,7 @@ Page({
       });
       return
     }
-    if (!this.data.smsCode || this.data.smsCode == '') {
+    if (!this.data.smsCode || this.data.smsCode === '') {
       this.setData({
         smsCodeError: true,
       });
@@ -170,9 +170,9 @@ Page({
     const openid = app.globalData.user.openid;
     const that = this;
     api.snsRegist(openid, this.data.name, this.data.tel, this.data.idcard, this.data.smsCode, res => {
-      if (res.data.code != 1) {
+      if (res.data.code !== 1) {
         that.setData({
-          errorMsg: res.data.msg
+          errorMsg: res.data.message
         });
         return
       }

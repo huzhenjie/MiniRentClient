@@ -49,13 +49,12 @@ module.exports = {
       }
     })
   },
-  bindUser: function (openid, roomId, tokenId, success) {
+  bindRoom: function (userId, roomId, tokenId, success) {
     wx.request({
-      method: 'POST',
-      url: `${host}/api/renter/bindUser`,
-      data: {
-        openid,
-        roomId,
+      method: 'GET',
+      url: `${host}/api/renter/bindRoom/${roomId}`,
+      header: {
+        userId,
         tokenId
       },
       success: res => {

@@ -2,7 +2,7 @@ const app = getApp();
 const api = require('api.js');
 
 const parseParam = qrStr => {
-  if (!qrStr || qrStr == '') {
+  if (!qrStr || qrStr === '') {
     console.log('qrStr is empty');
     return {}
   }
@@ -29,17 +29,17 @@ const parseParam = qrStr => {
 const execute = qrParams => {
   const { method, data } = qrParams;
   switch (method) {
-    case 'bindUser':
-      const { openid, tokenId, } = app.globalData.user;
+    case 'bindRoom':
+      const { userId,tokenId } = app.globalData.user;
       const bindRes = res => {
-        if (res.data.code != 1) {
+        if (res.data.code !== 1) {
           wx.showModal({
             title: `办理失败`,
-            content: res.data.msg,
+            content: res.data.message,
             confirmText: '重试',
             success: res => {
               if (res.confirm) {
-                api.bindUser(openid, data, tokenId, bindRes);
+                api.bindRoom(userId, data, tokenId, bindRes);
               }
             }
           });
@@ -49,8 +49,8 @@ const execute = qrParams => {
           url: '/pages/index/index'
         })
       };
-      api.bindUser(openid, data, tokenId, bindRes);
-      break
+      api.bindRoom(userId, data, tokenId, bindRes);
+      break;
   }
 };
 
@@ -60,7 +60,7 @@ module.exports = {
       success: res => {
         console.log(res);
         const { errMsg, result } = res;
-        if (errMsg != 'scanCode:ok') {
+        if (errMsg !== 'scanCode:ok') {
           return
         }
         const params = parseParam(result);
