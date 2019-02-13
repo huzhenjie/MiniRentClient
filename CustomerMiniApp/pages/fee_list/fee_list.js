@@ -94,4 +94,33 @@ Page({
       url: `/pages/rent_detail/rent_detail?rent_id=${rentId}`
     })
   },
+
+  payRent: function (event) {
+    const rentId = event.currentTarget.dataset.rentid;
+    console.log(rentId);
+    const {
+      userId,
+      tokenId
+    } = app.globalData.user;
+    api.createRentPaymentOrder(userId, tokenId, rentId, res => {
+      const { code, data } = res.data;
+      if (code !== 1) {
+        return;
+      }
+      const { appId, nonceStr, packageValue, paySign, signType, timeStamp } = data;
+      wx.requestPayment({
+        timeStamp,
+        nonceStr,
+        'package': packageValue,
+        signType,
+        paySign,
+        success: res => {
+          console.log('成功', res);
+        },
+        fail: err => {
+          console.log('失败', err);
+        }
+      })
+    });
+  }
 })

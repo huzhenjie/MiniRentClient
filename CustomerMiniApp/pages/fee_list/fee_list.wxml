@@ -37,7 +37,7 @@
       </view>
       <view class="weui-form-preview__ft">
         <view class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" bindtap="goToRentDetail" data-rentid="{{item.rentId}}">详情</view>
-        <view wx:if="{{item.payTs == 0}}" url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">立即缴费</view>
+        <view wx:if="{{item.payTs == 0}}" bindtap='payRent' data-rentid="{{item.rentId}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">立即缴费</view>
       </view>
     </view>
   </view>

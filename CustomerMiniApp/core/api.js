@@ -196,5 +196,16 @@ module.exports = {
         success && success(res)
       }
     })
+  },
+  createRentPaymentOrder: function (userId, tokenId, rentId, success) {
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/pay/wx/1/${rentId}`,
+      header: { userId, tokenId },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
   }
 };
