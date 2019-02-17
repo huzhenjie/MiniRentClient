@@ -11,7 +11,10 @@ Page({
    */
   data: {
     barginId: 0,
-    feeList: []
+    feeList: [],
+    deposit: {},
+    roomNo: '',
+    roomDescription: ''
   },
 
   /**
@@ -27,6 +30,13 @@ Page({
       tokenId
     } = app.globalData.user;
     const that = this;
+    api.bargin(userId, tokenId, barginId, res => {
+      that.setData({
+        deposit: res.data.data.deposit,
+        roomNo: res.data.data.roomNo,
+        roomDescription: `${res.data.data.building.address} - ${res.data.data.building.name}`
+      })
+    });
     api.getFeeList(barginId, userId, tokenId, 1, 30, res => {
       const feeList = res.data.data.list;
       feeList.map(item => {
@@ -108,26 +118,45 @@ Page({
       if (code !== 1) {
         return;
       }
-      const { appId, nonceStr, packageValue, paySign, signType, timeStamp } = data;
-      wx.requestPayment({
-        timeStamp,
-        nonceStr,
-        'package': packageValue,
-        signType,
-        paySign,
-        success: res => {
-          console.log('成功', res);
-          wx.showToast({
-            title: '支付成功',
-            icon: 'success',
-            duration: 2000
-          });
-          that.onLoad({ bargin_id: that.data.barginId });
-        },
-        fail: err => {
-          console.log('失败', err);
-        }
-      })
+      that.dealWithPayment(data);
     });
+  },
+
+  payDeposit: function () {
+    const {
+      userId,
+      tokenId
+    } = app.globalData.user;
+    const that = this;
+    api.createDepositPaymentOrder(userId, tokenId, this.data.deposit.depositId, res => {
+      const { code, data } = res.data;
+      if (code !== 1) {
+        return;
+      }
+      that.dealWithPayment(data);
+    })
+  }, 
+  dealWithPayment: function (data) {
+    const that = this;
+    const { appId, nonceStr, packageValue, paySign, signType, timeStamp } = data;
+    wx.requestPayment({
+      timeStamp,
+      nonceStr,
+      'package': packageValue,
+      signType,
+      paySign,
+      success: res => {
+        console.log('成功', res);
+        wx.showToast({
+          title: '支付成功',
+          icon: 'success',
+          duration: 2000
+        });
+        that.onLoad({ bargin_id: that.data.barginId });
+      },
+      fail: err => {
+        console.log('失败', err);
+      }
+    })
   }
 })

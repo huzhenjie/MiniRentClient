@@ -1,5 +1,25 @@
 <view class="page">
+  <view class="page__hd top">
+    <view class="page__title">{{roomNo}}</view>
+    <view class="page__desc">
+      {{roomDescription}}
+    </view>
+    <view class="page__desc">
+      <navigator url="/pages/room_info/room_info?bargin_id={{barginId}}" class="weui-agree__link">房间详情</navigator>
+    </view>
+  </view>
   <view class="page__bd">
+    <view class="weui-form-preview" wx:if="{{deposit.payNo == ''}}" wx:key="item">
+      <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label" style="color: red">押金待支付</view>
+          <view class="weui-form-preview__value_in-hd">¥{{deposit.fee / 100}}</view>
+        </view>
+        <view class="weui-form-preview__ft">
+          <view bindtap='payDeposit' class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">立即缴费</view>
+        </view>
+      </view>
+    </view>
     <view class="weui-form-preview" wx:for="{{feeList}}" wx:key="item">
       <view class="weui-form-preview__hd">
         <view class="weui-form-preview__item">

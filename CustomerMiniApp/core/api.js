@@ -207,5 +207,27 @@ module.exports = {
         success && success(res)
       }
     })
+  },
+  createDepositPaymentOrder: function (userId, tokenId, depositId, success) {
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/pay/wxMinPay/0/${depositId}`,
+      header: { userId, tokenId },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
+  },
+  getExtraHistory: function (userId, tokenId, extraId, success) {
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/renter/extraHistory/${extraId}`,
+      header: { userId, tokenId },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
   }
 };

@@ -47,13 +47,13 @@ Page({
   scan: function () {
     qr.scan()
   },
-  goToRoomDetail: function (event) {
-    const barginId = event.currentTarget.dataset.barginid;
-    console.log(barginId);
-    wx.navigateTo({
-      url: `/pages/room_info/room_info?bargin_id=${barginId}`
-    })
-  },
+  // goToRoomDetail: function (event) {
+  //   const barginId = event.currentTarget.dataset.barginid;
+  //   console.log(barginId);
+  //   wx.navigateTo({
+  //     url: `/pages/room_info/room_info?bargin_id=${barginId}`
+  //   })
+  // },
   gotoFeeList: function (event) {
     const barginId = event.currentTarget.dataset.barginid;
     console.log(barginId);

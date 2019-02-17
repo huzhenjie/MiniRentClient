@@ -128,7 +128,13 @@ Page({
         }
       }
     })
+  },
 
-
+  showExtraHitory: function(event) {
+    const extraId = event.currentTarget.dataset.extraid;
+    const extraName = event.currentTarget.dataset.extraname;
+    wx.navigateTo({
+      url: `/pages/deposit_extra_history/deposit_extra_history?extra_id=${extraId}&extra_name=${extraName}`,
+    })
   }
 })

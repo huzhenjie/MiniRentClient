@@ -3,3 +3,7 @@
 .weui-form-preview {
   margin-top: 25px;
 }
+
+.top {
+  background: linear-gradient(to bottom right, #E3F2FD , #BBDEFB);
+}
