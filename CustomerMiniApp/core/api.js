@@ -91,10 +91,10 @@ module.exports = {
       }
     })
   },
-  unpay: function (userId, tokenId, roomId, success) {
+  unpay: function (userId, tokenId, success) {
     wx.request({
       method: 'GET',
-      url: `${host}/api/renter/unpay/${roomId}`,
+      url: `${host}/api/renter/unpay`,
       header: {
         userId,
         tokenId
@@ -200,7 +200,7 @@ module.exports = {
   createRentPaymentOrder: function (userId, tokenId, rentId, success) {
     wx.request({
       method: 'GET',
-      url: `${host}/api/pay/wx/1/${rentId}`,
+      url: `${host}/api/pay/wxMinPay/1/${rentId}`,
       header: { userId, tokenId },
       success: res => {
         console.log(res);

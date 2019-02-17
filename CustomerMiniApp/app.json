@@ -19,16 +19,17 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "selectedColor": "#1296db",
     "list": [
       {
-        "iconPath": "/images/icon_tabbar.png",
-        "selectedIconPath": "/images/54x54.png",
+        "iconPath": "/images/rooms_unselected.png",
+        "selectedIconPath": "/images/rooms.png",
         "pagePath": "pages/index/index",
         "text": "我的房间"
       },
       {
-        "iconPath": "/images/icon_tabbar.png",
-        "selectedIconPath": "/images/54x54.png",
+        "iconPath": "/images/me_unselected.png",
+        "selectedIconPath": "/images/me.png",
         "pagePath": "pages/profile/profile",
         "text": "个人中心"
       }

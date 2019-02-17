@@ -3,7 +3,7 @@
     <view class="weui-form-preview" wx:for="{{feeList}}" wx:key="item">
       <view class="weui-form-preview__hd">
         <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label" wx:if="{{item.payTs > 0}}">已支付</view>
+          <view class="weui-form-preview__label" wx:if="{{item.payNo != ''}}">已支付</view>
           <view class="weui-form-preview__label" wx:else style="color: red">待支付</view>
           <view class="weui-form-preview__value_in-hd">¥{{item.realFee / 100}}</view>
         </view>
@@ -23,10 +23,10 @@
         </view>
         <view class="weui-form-preview__item">
           <view class="weui-form-preview__label">支付状态</view>
-          <view class="weui-form-preview__value" wx:if="{{item.payTs > 0}}">已支付</view>
+          <view class="weui-form-preview__value" wx:if="{{item.payNo != ''}}">已支付</view>
           <view class="weui-form-preview__value" wx:else>未支付</view>
         </view>
-        <view class="weui-form-preview__item" wx:if="{{item.payTs > 0}}">
+        <view class="weui-form-preview__item" wx:if="{{item.payNo != ''}}">
           <view class="weui-form-preview__label">支付时间</view>
           <view class="weui-form-preview__value">{{item.payDate}}</view>
         </view>
@@ -37,7 +37,7 @@
       </view>
       <view class="weui-form-preview__ft">
         <view class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" bindtap="goToRentDetail" data-rentid="{{item.rentId}}">详情</view>
-        <view wx:if="{{item.payTs == 0}}" bindtap='payRent' data-rentid="{{item.rentId}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">立即缴费</view>
+        <view wx:if="{{item.payNo == ''}}" bindtap='payRent' data-rentid="{{item.rentId}}" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">立即缴费</view>
       </view>
     </view>
   </view>

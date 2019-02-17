@@ -102,6 +102,7 @@ Page({
       userId,
       tokenId
     } = app.globalData.user;
+    const that = this;
     api.createRentPaymentOrder(userId, tokenId, rentId, res => {
       const { code, data } = res.data;
       if (code !== 1) {
@@ -116,6 +117,12 @@ Page({
         paySign,
         success: res => {
           console.log('成功', res);
+          wx.showToast({
+            title: '支付成功',
+            icon: 'success',
+            duration: 2000
+          });
+          that.onLoad({ bargin_id: that.data.barginId });
         },
         fail: err => {
           console.log('失败', err);
