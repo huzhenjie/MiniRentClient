@@ -5,7 +5,7 @@
       {{roomDescription}}
     </view>
     <view class="page__desc">
-      <navigator url="/pages/room_info/room_info?bargin_id={{barginId}}" class="weui-agree__link">房间详情</navigator>
+      <navigator url="/pages/room_info/room_info?bargin_id={{barginId}}" class="weui-agree__link">房间详情</navigator><view bindtap='showCallDialog' style="margin-left:10px;" class="weui-agree__link">联系房东</view>
     </view>
   </view>
   <view class="page__bd">

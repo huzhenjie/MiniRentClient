@@ -80,5 +80,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  goToRoomDetail: function (event) {
+    const barginId = event.currentTarget.dataset.barginid;
+    console.log(barginId);
+    wx.navigateTo({
+      url: `/pages/fee_list/fee_list?bargin_id=${barginId}`,//`/pages/room_info/room_info?bargin_id=${barginId}`,
+    })
   }
 })

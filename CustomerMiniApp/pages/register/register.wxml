@@ -3,24 +3,6 @@
 
     <view class="weui-cells__title">成为壕租会员</view>
     <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input {{nameError ? 'weui-cell_warn' : ''}}">
-        <view class="weui-cell__hd">
-          <view class="weui-label">姓名</view>
-        </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入姓名" bindinput="onNameChange" value="{{name}}" />
-        </view>
-      </view>
-
-      <view class="weui-cell weui-cell_input {{idcardError ? 'weui-cell_warn' : ''}}">
-        <view class="weui-cell__hd">
-          <view class="weui-label">身份证</view>
-        </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入18位身份证号码" bindinput="onIdcardChange" value="{{idcard}}" />
-        </view>
-      </view>
-
       <view class="weui-cell weui-cell_input weui-cell_vcode {{telError ? 'weui-cell_warn' : ''}}">
         <view class="weui-cell__hd">
           <view class="weui-label">手机号</view>
@@ -47,7 +29,7 @@
     <view class="weui-cells__tips" style="color: red">{{errorMsg}}</view>
 
     <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="register">确定</button>
+      <button class="weui-btn" type="primary" bindtap="register">注册</button>
     </view>
 
   </view>

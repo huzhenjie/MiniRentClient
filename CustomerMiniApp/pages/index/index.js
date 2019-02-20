@@ -20,8 +20,9 @@ Page({
     const that = this;
     api.wxLogin((userInfo, rawData, signature, code) => {
       api.login(code, rawData, signature, res => {
-        const { wxSns, tokenId } = res.data.data;
+        const { wxSns, tokenId, realCheck } = res.data.data;
         const { openid, unionid, userId } = wxSns;
+        app.globalData.realCheck = realCheck;
         app.globalData.userInfo = userInfo;
         app.globalData.user = {
           openid,
@@ -30,9 +31,12 @@ Page({
           tokenId
         };
         if (userId == -1) {
+          // wx.redirectTo({
+          //   url: '/pages/guide/guide'
+          // });
           wx.redirectTo({
-            url: '/pages/guide/guide'
-          });
+            url: '/pages/register/register'
+          })
           return
         }
         api.roomList(userId, tokenId, res => {
@@ -65,5 +69,11 @@ Page({
     wx.navigateTo({
       url: `/pages/history/history`,
     })
+  },
+  onShareAppMessage(res) {
+    return {
+      title: '欢迎使用「壕租」',
+      path: '/pages/index/index'
+    }
   }
 });

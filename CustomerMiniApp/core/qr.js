@@ -30,7 +30,7 @@ const execute = qrParams => {
   const { method, data } = qrParams;
   switch (method) {
     case 'bindRoom':
-      const { userId,tokenId } = app.globalData.user;
+      const { userId, tokenId } = app.globalData.user;
       const bindRes = res => {
         if (res.data.code !== 1) {
           wx.showModal({
@@ -43,11 +43,21 @@ const execute = qrParams => {
               }
             }
           });
-          return
+        } else {
+          wx.showModal({
+            title: `办理成功`,
+            content: res.data.data,
+            showCancel: false,
+            confirmText: '确定',
+            success: res => {
+              // if (res.confirm) {
+              //   wx.reLaunch({
+              //     url: '/pages/index/index'
+              //   })
+              // }
+            }
+          });
         }
-        wx.reLaunch({
-          url: '/pages/index/index'
-        })
       };
       api.bindRoom(userId, data, tokenId, bindRes);
       break;

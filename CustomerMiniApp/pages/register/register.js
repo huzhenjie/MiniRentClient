@@ -24,7 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    
   },
 
   /**
@@ -137,24 +137,10 @@ Page({
 
   register: function() {
     this.setData({
-      nameError: false,
-      idcardError: false,
       telError: false,
       smsCodeError: false,
       errorMsg: ""
     });
-    if (!this.data.name || this.data.name === '') {
-      this.setData({
-        nameError: true,
-      });
-      return
-    }
-    if (!this.data.idcard || this.data.idcard === '') {
-      this.setData({
-        idcardError: true,
-      });
-      return
-    }
     if (!this.data.tel || this.data.tel.length < 11) {
       this.setData({
         telError: true,
@@ -169,7 +155,7 @@ Page({
     }
     const openid = app.globalData.user.openid;
     const that = this;
-    api.snsRegist(openid, this.data.name, this.data.tel, this.data.idcard, this.data.smsCode, res => {
+    api.snsRegist(openid, app.globalData.userInfo.nickName, this.data.tel, this.data.smsCode, res => {
       if (res.data.code !== 1) {
         that.setData({
           errorMsg: res.data.message
@@ -177,8 +163,9 @@ Page({
         return
       }
 
-      const { wxSns, tokenId } = res.data.data;
+      const { wxSns, tokenId, realCheck } = res.data.data;
       const { openid, unionid, userId } = wxSns;
+      app.globalData.realCheck = realCheck;
       app.globalData.user = {
         openid,
         unionid,
@@ -187,8 +174,8 @@ Page({
       };
 
       if (userId && userId > 0) {
-        wx.redirectTo({
-          url: '/pages/guide/guide'
+        wx.switchTab({
+          url: '/pages/profile/profile'
         });
       } else {
         that.setData({

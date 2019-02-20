@@ -112,7 +112,7 @@
           <input class="weui-input" disabled="true" value="{{item.price/100}} 元/{{item.unit}}" />
         </view>
         <view class="weui-cell__ft">
-          <view bindtap="showExtraHitory" data-extraid="{{item.barginExtraId}}" data-extraname="{{item.value}}" class="weui-vcode-btn">历史</view>
+          <view bindtap="showExtraHitory" data-extraid="{{item.barginExtraId}}" data-extraname="{{item.value}}" class="weui-vcode-btn">查看历史</view>
         </view>
       </view>
     </view>

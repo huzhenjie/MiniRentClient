@@ -29,7 +29,7 @@
       </view>
     </view>
 
-    <view class="page__bd page__bd_spacing">
+    <view wx:if="{{initSuccess}}" class="page__bd page__bd_spacing">
       <button class="weui-btn" type="primary" bindtap="scan">扫码入住</button>
       <button wx-if="{{roomList.length == 0}}" class="weui-btn" type="default" bindtap='goToHistory'>租房历史</button>
     </view>

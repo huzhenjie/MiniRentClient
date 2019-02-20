@@ -4,7 +4,7 @@
     <view class="weui-cells weui-cells_after-title">
       <view wx:for="{{history_list}}" wx:key="item" class="weui-cell">
         <view class="weui-cell__bd">{{item.month}}</view>
-        <view class="weui-cell__ft">{{item.count}}</view>
+        <view class="weui-cell__ft"><span wx:if="{{item.number != -1}}">{{item.count}}</span><span wx:else>{{item.count/100}}</span> <span wx:if="{{item.unit}}">{{item.unit}}</span></view>
       </view>
     </view>
   </view>

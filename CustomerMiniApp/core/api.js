@@ -157,7 +157,7 @@ module.exports = {
       }
     })
   },
-  snsRegist: function (openid, name, phone, idCard, code, success) {
+  snsRegist: function (openid, name, phone, code, success) {
     wx.request({
       method: 'POST',
       url: `${host}/api/renter/snsRegist`,
@@ -166,7 +166,6 @@ module.exports = {
         body: {
           name,
           phone,
-          idCard,
           code
         }
       },

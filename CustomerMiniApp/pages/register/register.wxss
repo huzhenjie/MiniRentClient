@@ -1,1 +1,4 @@
 /* pages/register/register.wxss */
+.weui-label {
+  width: 180rpx;
+}

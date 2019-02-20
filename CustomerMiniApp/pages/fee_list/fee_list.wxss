@@ -7,3 +7,8 @@
 .top {
   background: linear-gradient(to bottom right, #E3F2FD , #BBDEFB);
 }
+
+.weui-agree__link {
+  color: #179B16;
+  font-size: 13pt;
+}

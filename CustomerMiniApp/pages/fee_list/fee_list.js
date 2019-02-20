@@ -13,6 +13,7 @@ Page({
     barginId: 0,
     feeList: [],
     deposit: {},
+    landlord: [],
     roomNo: '',
     roomDescription: ''
   },
@@ -32,6 +33,7 @@ Page({
     const that = this;
     api.bargin(userId, tokenId, barginId, res => {
       that.setData({
+        landlord: res.data.data.landlord, 
         deposit: res.data.data.deposit,
         roomNo: res.data.data.roomNo,
         roomDescription: `${res.data.data.building.address} - ${res.data.data.building.name}`
@@ -158,5 +160,24 @@ Page({
         console.log('失败', err);
       }
     })
+  },
+  showCallDialog: function () {
+    if (this.data.landlord.length == 0) {
+      return;
+    }
+    const that = this;
+    wx.showModal({
+      title: '联系房东',
+      content: `给房东 ${this.data.landlord[0].name} 拨打电话，此操作将会产生资费`,
+      confirmText: "立即拨打",
+      cancelText: "取消",
+      success: function (res) {
+        if (res.confirm) {
+          wx.makePhoneCall({
+            phoneNumber: that.data.landlord[0].phone
+          })
+        }
+      }
+    });
   }
 })
