@@ -1,0 +1,62 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells__title">基本信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input {{smsCodeError ? 'weui-cell_warn' : ''}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">姓名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请输入真实姓名" bindinput="onNameChange" value="{{name}}" />
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input {{idCardError ? 'weui-cell_warn' : ''}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">身份证</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请输入18位有效的身份证" bindinput="onIdcardChange" value="{{idCard}}" />
+        </view>
+      </view>
+
+    </view>
+
+    <view class="weui-cells">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title">身份证上传</view>
+              <!-- <view class="weui-uploader__info">点击上传</view> -->
+            </view>
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <block wx:for="{{files}}" wx:key="*this">
+                  <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                  </view>
+                </block>
+                <view bindtap='selectIdcardFront' class="weui-uploader__file {{idcardFront == '' ? 'weui-uploader__file_status' : ''}}">
+                  <image class="weui-uploader__img" src="{{idcardFront == '' ? '../images/pic_160.png' : idcardFront}}" mode="aspectFill" />
+                  <view wx-if="{{idcardFront == ''}}" class="weui-uploader__file-content">正面</view>
+                </view>
+                <view bindtap='selectIdcardBack' class="weui-uploader__file {{idcardBack == '' ? 'weui-uploader__file_status' : ''}}">
+                  <image class="weui-uploader__img" src="{{idcardBack == '' ? '../images/pic_160.png' : idcardBack}}" mode="aspectFill" />
+                  <view wx-if="{{idcardBack == ''}}" class="weui-uploader__file-content">背面</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__tips" style="color: red">{{errorMsg}}</view>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="submit">开始认证</button>
+    </view>
+
+  </view>
+  <loading hidden="{{!loading}}">正在加载</loading>
+</view>

@@ -7,13 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name: "",
     tel: "",
-    idcard: "",
     smsCode: "",
     smsBtn: '获取验证码',
-    nameError: false,
-    idcardError: false,
     telError: false,
     smsCodeError: false,
     errorMsg: "",
@@ -80,18 +76,6 @@ Page({
     const tel = e.detail.value;
     this.setData({
       tel
-    })
-  },
-
-  onIdcardChange: function(e) {
-    this.setData({
-      idcard: e.detail.value
-    })
-  },
-
-  onNameChange: function(e) {
-    this.setData({
-      name: e.detail.value
     })
   },
 

@@ -11,7 +11,8 @@
     "pages/rent_detail/rent_detail",
     "pages/register/register",
     "pages/history/history",
-    "pages/deposit_extra_history/deposit_extra_history"
+    "pages/deposit_extra_history/deposit_extra_history",
+    "pages/verified/verified"
   ],
   "window": {
     "backgroundTextStyle": "light",

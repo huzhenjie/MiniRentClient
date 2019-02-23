@@ -1,0 +1,4 @@
+/* pages/verified/verified.wxss */
+.weui-label {
+  width: 180rpx;
+}

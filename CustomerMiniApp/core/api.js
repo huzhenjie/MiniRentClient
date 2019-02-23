@@ -1,4 +1,5 @@
 const host = 'https://scrats.cn/rent';
+const qiniuUploader = require('./qiniuUploader.js');
 
 module.exports = {
   wxLogin: function (success) {
@@ -35,12 +36,12 @@ module.exports = {
   login: function (code, rawData, signature, success) {
     wx.request({
       method: 'POST',
-      url: `${host}/api/renter/snsLogin`,
+      url: `${host}/api/renter/snsLogin?ts=${new Date().getTime()}`, // ignore cache
       data: {
         body: {
           code,
           signature,
-          rawData
+          rawData,
         }
       },
       success: res => {
@@ -223,6 +224,49 @@ module.exports = {
       method: 'GET',
       url: `${host}/api/renter/extraHistory/${extraId}`,
       header: { userId, tokenId },
+      success: res => {
+        console.log(res);
+        success && success(res)
+      }
+    })
+  },
+  uploadImg: function (imgPath, success, fail) {
+    console.log(imgPath);
+    wx.request({
+      method: 'GET',
+      url: `${host}/api/upload/uploadToken`,
+      success: res => {
+        const { domain, token } = res.data.data;
+        console.log(domain);
+        console.log(token);
+
+        qiniuUploader.upload(imgPath, (res) => {
+          console.log(res);
+          success && success(res.imageURL);
+        }, (error) => {
+          console.log('error: ' + error);
+          fail && fail()
+        }, {
+            uploadURL: 'https://up-z2.qiniup.com',
+            domain: 'rcdn.scrats.cn',
+            uptoken: token
+          });
+      }
+    })
+  },
+  realCertification: function (userId, tokenId, name, idCard, idCardPic, idCardPicBack, success) {
+    wx.request({
+      method: 'POST',
+      url: `${host}/api/user/realCertification`,
+      header: { userId, tokenId },
+      data: {
+        body: {
+          name,
+          idCard,
+          idCardPic,
+          idCardPicBack
+        }
+      },
       success: res => {
         console.log(res);
         success && success(res)

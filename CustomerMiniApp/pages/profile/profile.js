@@ -16,11 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { avatarUrl, nickName } = app.globalData.userInfo;
-    const realCheck = app.globalData.realCheck;
-    if (avatarUrl) {
-      this.setData({ avatarUrl, nickName, realCheck });
-    }
+    
   },
 
   /**
@@ -34,7 +30,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    const { avatarUrl, nickName } = app.globalData.userInfo;
+    const realCheck = app.globalData.realCheck;
+    if (avatarUrl) {
+      this.setData({ avatarUrl, nickName, realCheck });
+    }
   },
 
   /**
@@ -73,5 +73,11 @@ Page({
       title: '欢迎使用「壕租」',
       path: '/pages/index/index'
     }
+  },
+
+  goToVerified() {
+    wx.navigateTo({
+      url: `/pages/verified/verified`,
+    })
   }
 })

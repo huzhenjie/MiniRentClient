@@ -7,8 +7,8 @@
   </view>
   <view class="page__bd">
     <view class='page__bd page__bd_spacing'>
-      <button wx:if='{{realCheck != 1}}' class="weui-btn" type="primary" open-type="share">实名认证</button>
-      <button wx:else class="weui-btn" type="primary" open-type="share">分享</button>
+      <button wx:if='{{realCheck != 2}}' disabled="{{realCheck == 1}}" class="weui-btn" type="primary" bindtap='goToVerified'>{{realCheck == 1 ? '认证中' : '实名认证'}}</button>
+      <button class="weui-btn" type="primary" open-type="share">分享</button>
     </view>
   </view>
 </view>
